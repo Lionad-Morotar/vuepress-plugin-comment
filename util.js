@@ -87,7 +87,8 @@ export const provider = {
 
       new Valine({
         ...renderConfig(COMMENT_OPTIONS, { frontmatter }),
-        el: `#${commentDomID}`
+        el: `#${commentDomID}`,
+        path: window.location.path
       })
     },
     clear (commentDomID) {
