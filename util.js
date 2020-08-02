@@ -46,6 +46,8 @@ export function renderConfig (config, data) {
           console.warn(`More info: ${error.message}`)
           result[key] = config[key]
         }
+      } else if (typeof config[key] === 'function') {
+        result[key] = config[key]()
       } else {
         result[key] = config[key]
       }
@@ -88,7 +90,6 @@ export const provider = {
       new Valine({
         ...renderConfig(COMMENT_OPTIONS, { frontmatter }),
         el: `#${commentDomID}`,
-        path: window.location.path
       })
     },
     clear (commentDomID) {
