@@ -35,7 +35,6 @@ export function loadScript (name) {
  */
 export function renderConfig (config, data) {
   const result = {}
-
   Reflect.ownKeys(config)
     .forEach(key => {
       if (typeof config[key] === 'string') {
@@ -90,6 +89,8 @@ export const provider = {
       new Valine({
         ...renderConfig(COMMENT_OPTIONS, { frontmatter }),
         el: `#${commentDomID}`,
+        path: window.location.path,
+        recordIP: !navigator.doNotTrack
       })
     },
     clear (commentDomID) {
